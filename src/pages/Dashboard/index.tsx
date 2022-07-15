@@ -1,17 +1,12 @@
-// import { Outlet } from 'react-router-dom'
-import { Typography } from 'antd'
-
-const { Title } = Typography
+import { StyledTitle } from 'components'
 
 const Dashboard = () => {
   return (
     <>
-      <Title level={1} style={{ color: '#525252', margin: 0 }}>
-        Hola Bryan!
-      </Title>
-      <Title level={3} style={{ color: '#525252', margin: 0, marginTop: 16 }}>
+      <StyledTitle level={1}>Hola Bryan!</StyledTitle>
+      <StyledTitle level={3}>
         ¿Qué deseas hacer? (TODO: definir acciones)
-      </Title>
+      </StyledTitle>
     </>
   )
 }

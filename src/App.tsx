@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { LoadingPage } from 'components'
+import { Progress, StyledContainer } from 'components'
 import { MainLayout } from 'layouts'
 import routes from 'routes'
 import './App.css'
@@ -20,8 +20,10 @@ const renderRoutes: RenderRoutes = (routes) =>
 const App = () => (
   <BrowserRouter>
     <MainLayout>
-      <Suspense fallback={<LoadingPage />}>
-        <Routes>{renderRoutes(routes)}</Routes>
+      <Suspense fallback={<Progress />}>
+        <StyledContainer>
+          <Routes>{renderRoutes(routes)}</Routes>
+        </StyledContainer>
       </Suspense>
     </MainLayout>
   </BrowserRouter>

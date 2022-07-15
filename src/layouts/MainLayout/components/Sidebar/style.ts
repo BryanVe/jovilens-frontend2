@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 import { Divider, Layout, Menu } from 'antd'
-import { jovilensColor } from 'theme'
+import { theme } from 'theme'
 
 const { Sider } = Layout
 
 export const StyledSider = styled(Sider)`
-  background-color: ${jovilensColor.main};
+  background-color: ${theme.jovilens.main};
   overflow-x: hidden;
   overflow-y: auto;
 
@@ -17,8 +17,8 @@ export const StyledSider = styled(Sider)`
 
 export const StyledMenu = styled(Menu)`
   font-weight: 400;
-  background-color: ${jovilensColor.main};
-  border-right-color: ${jovilensColor.main};
+  background-color: ${theme.jovilens.main};
+  border-right-color: ${theme.jovilens.main};
   border-left: 3px solid #fff;
 
   & > .ant-menu-item {
@@ -28,7 +28,7 @@ export const StyledMenu = styled(Menu)`
   }
 
   & > .ant-menu-item:hover {
-    background-color: ${jovilensColor.light};
+    background-color: ${theme.jovilens.light};
     color: #fff;
   }
 
@@ -38,7 +38,7 @@ export const StyledMenu = styled(Menu)`
 
   & > .ant-menu-item-selected {
     font-weight: 500;
-    background-color: ${jovilensColor.light} !important;
+    background-color: ${theme.jovilens.light} !important;
   }
 
   &.ant-menu-inline-collapsed > .ant-menu-item {
@@ -51,7 +51,7 @@ export const StyledMenu = styled(Menu)`
 `
 
 export const StyledDivider = styled(Divider)`
-  background-color: ${jovilensColor.dark};
+  background-color: ${theme.jovilens.dark};
   height: 3px;
   margin: 0;
 `

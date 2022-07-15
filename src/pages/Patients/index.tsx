@@ -1,14 +1,9 @@
-// import { Outlet } from 'react-router-dom'
-import { Typography } from 'antd'
-
-const { Title } = Typography
+import { StyledTitle } from 'components'
 
 const Patients = () => {
   return (
     <>
-      <Title level={3} style={{ color: '#525252', margin: 0 }}>
-        Pacientes
-      </Title>
+      <StyledTitle level={3}>Pacientes</StyledTitle>
     </>
   )
 }

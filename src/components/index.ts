@@ -1,1 +1,2 @@
-export { default as LoadingPage } from './LoadingPage'
+export { default as Progress } from './Progress'
+export * from './styled-components'
