@@ -1,21 +1,17 @@
 import { lazy } from 'react'
-import { ErrorLayout, MainLayout } from 'layouts'
 
 const routes: Route[] = [
   {
     path: '/',
-    layout: MainLayout,
-    element: lazy(() => import('pages/Dashboard')),
+    component: lazy(() => import('pages/Dashboard')),
   },
   {
-    path: '/aea',
-    layout: MainLayout,
-    element: lazy(() => import('pages/Dashboard')),
+    path: '/patients',
+    component: lazy(() => import('pages/Patients')),
   },
   {
     path: '*',
-    layout: ErrorLayout,
-    element: lazy(() => import('pages/NotFound')),
+    component: lazy(() => import('pages/NotFound')),
   },
 ]
 

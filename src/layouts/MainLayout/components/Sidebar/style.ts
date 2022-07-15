@@ -6,7 +6,8 @@ const { Sider } = Layout
 
 export const StyledSider = styled(Sider)`
   background-color: ${jovilensColor.main};
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   .ant-layout-sider-children {
     display: flex;

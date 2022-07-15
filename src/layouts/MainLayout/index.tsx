@@ -17,7 +17,7 @@ const MainLayout: FC<PropsWithChildren> = (props) => {
       <Sidebar collapsed={collapsed} width={sidebarWidth} />
       <Layout>
         <Header collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
-        <Content style={{ padding: 16 }}>{children}</Content>
+        <Content style={{ padding: 32 }}>{children}</Content>
       </Layout>
     </Layout>
   )

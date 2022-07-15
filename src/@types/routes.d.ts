@@ -5,10 +5,9 @@ type NavigateFunction = import('react-router-dom').NavigateFunction
 type ItemType = import('antd/lib/menu/hooks/useItems').ItemType
 
 interface Route {
-  path: string
-  element: LazyExoticComponent<() => JSX.Element>
-  layout?: FC<PropsWithChildren>
-  sub?: Route[]
+  path?: string
+  component?: LazyExoticComponent<() => JSX.Element>
+  routes?: Route[]
 }
 
 type RenderRoutes = (routes?: Route[]) => JSX.Element[] | undefined

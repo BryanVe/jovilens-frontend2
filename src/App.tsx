@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Spin } from 'antd'
+import { LoadingPage } from 'components'
+import { MainLayout } from 'layouts'
 import routes from 'routes'
 import './App.css'
 
@@ -10,25 +11,19 @@ const renderRoutes: RenderRoutes = (routes) =>
       caseSensitive
       key={route.path}
       path={route.path}
-      element={
-        route.layout ? (
-          <route.layout>
-            <route.element />
-          </route.layout>
-        ) : (
-          <route.element />
-        )
-      }
+      element={<route.component />}
     >
-      {renderRoutes(route.sub)}
+      {renderRoutes(route.routes)}
     </Route>
   ))
 
 const App = () => (
   <BrowserRouter>
-    <Suspense fallback={<Spin />}>
-      <Routes>{renderRoutes(routes)}</Routes>
-    </Suspense>
+    <MainLayout>
+      <Suspense fallback={<LoadingPage />}>
+        <Routes>{renderRoutes(routes)}</Routes>
+      </Suspense>
+    </MainLayout>
   </BrowserRouter>
 )
 

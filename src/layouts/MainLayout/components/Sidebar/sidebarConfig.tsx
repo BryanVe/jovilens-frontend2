@@ -1,4 +1,4 @@
-import { AppstoreOutlined } from '@ant-design/icons'
+import { AppstoreOutlined, UserOutlined } from '@ant-design/icons'
 
 export const getSidebarItems: GetSidebarItems = (navigate) => [
   {
@@ -6,5 +6,11 @@ export const getSidebarItems: GetSidebarItems = (navigate) => [
     label: 'Dashboard',
     icon: <AppstoreOutlined />,
     onClick: () => navigate('/'),
+  },
+  {
+    key: '/patients',
+    label: 'Pacientes',
+    icon: <UserOutlined />,
+    onClick: () => navigate('/patients'),
   },
 ]
