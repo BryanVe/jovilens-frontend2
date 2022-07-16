@@ -21,13 +21,13 @@ export const StyledMenu = styled(Menu)`
   border-right-color: ${theme.jovilens.main};
   border-left: 3px solid #fff;
 
-  & > .ant-menu-item {
+  & .ant-menu-item {
     color: #fff;
     height: 48px;
     margin: 0 !important;
   }
 
-  & > .ant-menu-item:hover {
+  & .ant-menu-item:hover {
     background-color: ${theme.jovilens.light};
     color: #fff;
   }
@@ -36,17 +36,50 @@ export const StyledMenu = styled(Menu)`
     border-style: none;
   }
 
-  & > .ant-menu-item-selected {
+  &.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
     font-weight: 500;
-    background-color: ${theme.jovilens.light} !important;
+    background-color: ${theme.jovilens.light};
   }
 
-  &.ant-menu-inline-collapsed > .ant-menu-item {
+  &.ant-menu-inline-collapsed .ant-menu-item {
     height: 40px;
   }
 
-  & > .ant-menu-item .anticon {
+  & .ant-menu-submenu {
+    color: #fff;
+  }
+
+  & .ant-menu-submenu > .ant-menu-submenu-title {
+    color: #fff;
+    background-color: ${theme.jovilens.main};
+    margin: 0;
+    height: 48px;
+  }
+
+  &.ant-menu-inline-collapsed .ant-menu-submenu-title {
+    height: 40px;
+  }
+
+  & .ant-menu-submenu-title:hover {
+    color: #fff;
+  }
+
+  & .ant-menu-sub {
+    background-color: ${theme.jovilens.main};
+  }
+
+  & .ant-menu-sub .ant-menu-item {
+    background-color: ${theme.jovilens.main};
+    color: #fff;
+    height: 48px;
+  }
+
+  & .anticon {
     font-size: 18px;
+  }
+
+  & .ant-menu-submenu-arrow {
+    color: #fff !important;
   }
 `
 
