@@ -11,6 +11,12 @@ export const getSidebarItems: GetSidebarItems = (navigate) => [
     key: '/patients',
     label: 'Pacientes',
     icon: <UserOutlined />,
-    onClick: () => navigate('/patients'),
+    children: [
+      {
+        key: '/patients/create',
+        label: 'Crear paciente',
+        onClick: () => navigate('/patients/create'),
+      },
+    ],
   },
 ]

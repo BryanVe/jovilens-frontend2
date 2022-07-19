@@ -1,4 +1,5 @@
 import { lazy } from 'react'
+import { Outlet } from 'react-router-dom'
 
 const routes: Route[] = [
   {
@@ -7,7 +8,13 @@ const routes: Route[] = [
   },
   {
     path: '/patients',
-    component: lazy(() => import('pages/Patients')),
+    component: Outlet,
+    routes: [
+      {
+        path: 'create',
+        component: lazy(() => import('pages/CreatePatient')),
+      },
+    ],
   },
   {
     path: '*',

@@ -11,7 +11,7 @@ const renderRoutes: RenderRoutes = (routes) =>
       caseSensitive
       key={route.path}
       path={route.path}
-      element={<route.component />}
+      element={route.component ? <route.component /> : null}
     >
       {renderRoutes(route.routes)}
     </Route>

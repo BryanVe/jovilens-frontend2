@@ -11,4 +11,5 @@ export const StyledTitle = styled(Title)`
 export const StyledContainer = styled.div`
   padding: 32px;
   height: 100%;
+  overflow-y: auto;
 `

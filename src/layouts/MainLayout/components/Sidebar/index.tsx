@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { StyledSider, StyledMenu, StyledDivider, StyledLogo } from './style'
 import { getSidebarItems } from './sidebarConfig'
+import './sidebar-popup.css'
 
 interface SidebarProps {
   width: number

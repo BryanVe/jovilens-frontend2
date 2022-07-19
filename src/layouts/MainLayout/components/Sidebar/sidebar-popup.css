@@ -1,0 +1,18 @@
+.ant-menu-submenu-popup .ant-menu-item,
+.ant-menu-submenu-popup .ant-menu-item:hover {
+  color: #000;
+}
+
+.ant-menu-submenu-popup .ant-menu-item:hover,
+.ant-menu-submenu-popup
+  .ant-menu:not(.ant-menu-horizontal)
+  .ant-menu-item-selected {
+  background-color: #ececec;
+}
+
+.ant-menu-submenu-popup
+  .ant-menu:not(.ant-menu-horizontal)
+  .ant-menu-item-selected {
+  color: #033a9e;
+  font-weight: 500;
+}
