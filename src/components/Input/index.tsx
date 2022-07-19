@@ -1,30 +1,22 @@
 import { FC } from 'react'
 import { Alert } from 'antd'
-import { StyledLabel, StyledInput } from './style'
+import { StyledLabel } from 'components'
+import { StyledInput } from './style'
 
 interface InputProps {
   id: string
   type?: string
   label: string
-  value: string
+  value?: string
   error?: string
-  placeholder?: string
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const Input: FC<InputProps> = (props) => {
-  const {
-    id,
-    type = 'text',
-    label,
-    value,
-    error,
-    placeholder,
-    onChange,
-  } = props
+  const { id, type = 'text', label, value, error, onChange } = props
 
   return (
-    <div style={{ marginBottom: 16 }}>
+    <>
       <StyledLabel htmlFor={id}>{label}</StyledLabel>
       <StyledInput
         type={type}
@@ -33,7 +25,7 @@ const Input: FC<InputProps> = (props) => {
         name={id}
         value={value}
         onChange={onChange}
-        placeholder={placeholder}
+        placeholder={label}
       />
       {error && (
         <Alert
@@ -43,7 +35,7 @@ const Input: FC<InputProps> = (props) => {
           style={{ marginTop: 3, fontSize: 12 }}
         />
       )}
-    </div>
+    </>
   )
 }
 

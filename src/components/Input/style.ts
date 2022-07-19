@@ -2,10 +2,6 @@ import styled from 'styled-components'
 import { Input } from 'antd'
 import { theme } from 'theme'
 
-export const StyledLabel = styled.label`
-  font-size: 12px !important;
-`
-
 export const StyledInput = styled(Input)`
   border-radius: 4px;
   padding-top: 10px;
@@ -17,7 +13,7 @@ export const StyledInput = styled(Input)`
     box-shadow: 0 0 0 2px rgb(3 58 158 / 30%);
   }
 
-  /* &::-webkit-inner-spin-button,
+  &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
@@ -25,5 +21,5 @@ export const StyledInput = styled(Input)`
 
   input[type='number'] {
     -moz-appearance: textfield;
-  } */
+  }
 `

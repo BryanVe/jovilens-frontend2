@@ -13,3 +13,7 @@ export const StyledContainer = styled.div`
   height: 100%;
   overflow-y: auto;
 `
+
+export const StyledLabel = styled.label`
+  font-size: 12px !important;
+`

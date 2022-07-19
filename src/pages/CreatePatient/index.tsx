@@ -1,43 +1,7 @@
 import { useState } from 'react'
 import { Button, Row, Col } from 'antd'
-import { StyledTitle, Input } from 'components'
-
-const formValidations: FormValidations = {
-  names: [
-    {
-      rule: (value) => value.length !== 0,
-      message: 'Este campo es requerido',
-    },
-  ],
-  lastNames: [
-    {
-      rule: (value) => value.length !== 0,
-      message: 'Este campo es requerido',
-    },
-  ],
-  phone: [
-    {
-      rule: (value) => value.length !== 0,
-      message: 'Este campo es requerido',
-    },
-  ],
-  age: [
-    {
-      rule: (value) => value.length !== 0,
-      message: 'Este campo es requerido',
-    },
-    {
-      rule: (value) => parseInt(value) < 100,
-      message: 'Debe ser menor a 100',
-    },
-  ],
-  address: [
-    {
-      rule: (value) => value.length !== 0,
-      message: 'Este campo es requerido',
-    },
-  ],
-}
+import { StyledTitle, Input, Selector } from 'components'
+import { civilStatusOptions, genderOptions, patientValidations } from 'utils'
 
 interface FormData {
   names: string
@@ -45,23 +9,14 @@ interface FormData {
   phone: string
   age: string
   address: string
-  occupation: string
-  gender: string
-  civilStatus: string
+  occupation?: string
+  gender?: string
+  civilStatus?: string
 }
 
 const CreatePatient = () => {
   const [errors, setErrors] = useState<StringToStringMap>({})
-  const [formData, setFormData] = useState<FormData>({
-    names: '',
-    lastNames: '',
-    phone: '',
-    age: '',
-    address: '',
-    occupation: '',
-    gender: '',
-    civilStatus: '',
-  })
+  const [formData, setFormData] = useState<Partial<FormData>>({})
 
   const handleChangeFormInput = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -79,20 +34,33 @@ const CreatePatient = () => {
     }))
   }
 
+  const handleChangeFormSelector = (name: string, value: string) => {
+    if (errors[name])
+      setErrors((errors) => ({
+        ...errors,
+        [name]: undefined,
+      }))
+
+    setFormData((formData) => ({
+      ...formData,
+      [name]: value,
+    }))
+  }
+
   const validateForm = () => {
     let ok = true
-    Object.entries(formData).forEach((entry) => {
-      const key = entry[0]
-      const value = entry[1]
-      const fieldValidations = formValidations[key] || []
-      const notPassedValidation = fieldValidations.find(
-        (validation) => !validation.rule(value)
+    Object.entries(patientValidations).forEach((entry) => {
+      const field = entry[0]
+      const validations = entry[1]
+      const value = Object(formData)[field]
+      const failedValidation = validations.find(
+        (validation) => !value || !validation.rule(value)
       )
 
-      if (notPassedValidation) {
+      if (failedValidation) {
         setErrors((errors) => ({
           ...errors,
-          [key]: notPassedValidation.message,
+          [field]: failedValidation.message,
         }))
 
         ok = false
@@ -114,70 +82,88 @@ const CreatePatient = () => {
     <>
       <StyledTitle level={3}>Crear paciente</StyledTitle>
       <form onSubmit={createPatient}>
-        <Row gutter={16}>
-          <Col xs={24} sm={12} md={12}>
+        <Row gutter={[16, 16]}>
+          <Col xs={24} sm={24} md={12} lg={12} xl={8} xxl={7}>
             <Input
               id='names'
               label='Nombres'
-              placeholder='Ingrese los nombres'
               value={formData.names}
               error={errors['names']}
               onChange={handleChangeFormInput}
             />
           </Col>
-          <Col xs={24} sm={12} md={12}>
+          <Col xs={24} sm={24} md={12} lg={12} xl={8} xxl={7}>
             <Input
               id='lastNames'
               label='Apellidos'
-              placeholder='Ingrese los apellidos'
               value={formData.lastNames}
-              error={errors['lastNames']}
+              error={errors.lastNames}
               onChange={handleChangeFormInput}
             />
           </Col>
-          <Col xs={24} sm={17} md={17}>
-            <Input
-              id='address'
-              label='Dirección'
-              placeholder='Ingrese la dirección'
-              value={formData.address}
-              error={errors['address']}
-              onChange={handleChangeFormInput}
-            />
-          </Col>
-          <Col xs={24} sm={7} md={7}>
-            <Input
-              id='phone'
-              label='Teléfono'
-              placeholder='Ingrese el teléfono'
-              value={formData.phone}
-              error={errors['phone']}
-              onChange={handleChangeFormInput}
-            />
-          </Col>
-          <Col xs={24} sm={6} md={6}>
-            <Input
-              id='occupation'
-              label='Ocupación'
-              placeholder='Ingrese la ocupación'
-              value={formData.occupation}
-              error={errors['occupation']}
-              onChange={handleChangeFormInput}
-            />
-          </Col>
-          <Col xs={24} sm={12} md={5}>
+          <Col xs={24} sm={24} md={12} lg={10} xl={8} xxl={5}>
             <Input
               id='age'
               type='number'
               label='Edad'
-              placeholder='Ingrese la edad'
               value={formData.age}
-              error={errors['age']}
+              error={errors.age}
               onChange={handleChangeFormInput}
             />
           </Col>
+          <Col xs={24} sm={24} md={12} lg={14} xl={9} xxl={5}>
+            <Input
+              id='phone'
+              label='Teléfono'
+              value={formData.phone}
+              error={errors.phone}
+              onChange={handleChangeFormInput}
+            />
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={5} xxl={5}>
+            <Input
+              id='occupation'
+              label='Ocupación'
+              value={formData.occupation}
+              error={errors.occupation}
+              onChange={handleChangeFormInput}
+            />
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={5} xxl={5}>
+            <Selector
+              id='gender'
+              label='Género'
+              value={formData.gender}
+              error={errors.gender}
+              onChange={(value) => handleChangeFormSelector('gender', value)}
+              options={genderOptions}
+            />
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={5} xxl={5}>
+            <Selector
+              id='civilStatus'
+              label='Estado civil'
+              value={formData.civilStatus}
+              error={errors.civilStatus}
+              onChange={(value) =>
+                handleChangeFormSelector('civilStatus', value)
+              }
+              options={civilStatusOptions}
+            />
+          </Col>
+          <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={9}>
+            <Input
+              id='address'
+              label='Dirección'
+              value={formData.address}
+              error={errors.address}
+              onChange={handleChangeFormInput}
+            />
+          </Col>
+          <Col xs={24} sm={24} md={5}>
+            <Button htmlType='submit'>Crear</Button>
+          </Col>
         </Row>
-        <Button htmlType='submit'>Crear</Button>
       </form>
     </>
   )
