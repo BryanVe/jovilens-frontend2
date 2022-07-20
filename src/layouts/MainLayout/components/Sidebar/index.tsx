@@ -1,29 +1,53 @@
 import { FC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { StyledSider, StyledMenu, StyledDivider, StyledLogo } from './style'
+import {
+  StyledSider,
+  StyledMenu,
+  StyledDivider,
+  StyledLogo,
+  StyledDrawer,
+} from './style'
 import { getSidebarItems } from './sidebarConfig'
 import './sidebar-popup.css'
 
 interface SidebarProps {
   width: number
   collapsed: boolean
+  toggleCollapsed: () => void
 }
 
 const Sidebar: FC<SidebarProps> = (props) => {
-  const { width, collapsed } = props
+  const { width, collapsed, toggleCollapsed } = props
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
-  return (
-    <StyledSider width={width} collapsed={collapsed}>
-      <StyledLogo>{collapsed ? 'J' : 'JOVILENS'}</StyledLogo>
+  const siderContent = (
+    <>
       <StyledDivider />
       <StyledMenu
         mode='inline'
         selectedKeys={[pathname]}
         items={getSidebarItems(navigate)}
       />
-    </StyledSider>
+    </>
+  )
+
+  return (
+    <>
+      <StyledSider width={width} collapsed={collapsed}>
+        <StyledLogo>{collapsed ? 'J' : 'JOVILENS'}</StyledLogo>
+        {siderContent}
+      </StyledSider>
+      <StyledDrawer
+        width={width}
+        visible={!collapsed}
+        placement='left'
+        onClose={toggleCollapsed}
+      >
+        <StyledLogo>JOVILENS</StyledLogo>
+        {siderContent}
+      </StyledDrawer>
+    </>
   )
 }
 

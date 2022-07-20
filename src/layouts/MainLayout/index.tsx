@@ -14,7 +14,11 @@ const MainLayout: FC<PropsWithChildren> = (props) => {
 
   return (
     <Layout style={{ height: '100vh' }}>
-      <Sidebar collapsed={collapsed} width={sidebarWidth} />
+      <Sidebar
+        collapsed={collapsed}
+        width={sidebarWidth}
+        toggleCollapsed={toggleCollapsed}
+      />
       <Layout>
         <Header collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
         <Content>{children}</Content>

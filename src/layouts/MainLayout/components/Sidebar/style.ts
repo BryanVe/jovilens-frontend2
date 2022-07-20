@@ -1,8 +1,9 @@
 import styled from 'styled-components'
-import { Divider, Layout, Menu } from 'antd'
+import { Divider, Drawer, Layout, Menu } from 'antd'
 import { theme } from 'theme'
 
 const { Sider } = Layout
+const breakpoint = '920px'
 
 export const StyledSider = styled(Sider)`
   background-color: ${theme.jovilens.main};
@@ -12,6 +13,10 @@ export const StyledSider = styled(Sider)`
   .ant-layout-sider-children {
     display: flex;
     flex-direction: column;
+  }
+
+  @media (max-width: ${breakpoint}) {
+    display: none;
   }
 `
 
@@ -87,6 +92,23 @@ export const StyledDivider = styled(Divider)`
   background-color: ${theme.jovilens.dark};
   height: 3px;
   margin: 0;
+`
+
+export const StyledDrawer = styled(Drawer)`
+  & .ant-drawer-header {
+    display: none;
+  }
+
+  & .ant-drawer-body {
+    background-color: ${theme.jovilens.main};
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: ${breakpoint}) {
+    display: none;
+  }
 `
 
 export const StyledLogo = styled.span`
