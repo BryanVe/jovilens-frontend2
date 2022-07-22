@@ -5,32 +5,38 @@ import { StyledSelect } from './style'
 
 const { Option } = Select
 
-interface SelectorOption {
-  label: string
-  value: string
-}
-
 interface SelectorProps {
   id: string
+  size?: SizeType
   label: string
   value?: string
   options?: SelectorOption[]
   error?: string
+  placeholder?: string
   onChange?: (value: string) => void
 }
 
 const Selector: FC<SelectorProps> = (props) => {
-  const { id, label, value, options, error, onChange } = props
+  const {
+    id,
+    size = 'large',
+    label,
+    value,
+    options,
+    error,
+    placeholder,
+    onChange,
+  } = props
 
   return (
     <>
       <StyledLabel htmlFor={id}>{label}</StyledLabel>
       <StyledSelect
         allowClear
-        size='large'
+        size={size}
         id={id}
         value={value}
-        placeholder={label}
+        placeholder={placeholder}
         onChange={onChange}
       >
         {options &&

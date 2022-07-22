@@ -4,9 +4,6 @@ import { theme } from 'theme'
 
 export const StyledInput = styled(Input)`
   border-radius: 4px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-top: 4px;
 
   &:focus {
     border-color: ${theme.jovilens.main};

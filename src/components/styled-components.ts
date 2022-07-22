@@ -15,5 +15,7 @@ export const StyledContainer = styled.div`
 `
 
 export const StyledLabel = styled.label`
+  display: block;
+  margin-bottom: 4px;
   font-size: 12px !important;
 `

@@ -6,26 +6,37 @@ import { StyledInput } from './style'
 interface InputProps {
   id: string
   type?: string
-  label: string
+  size?: SizeType
+  label?: string
   value?: string
   error?: string
+  placeholder?: string
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const Input: FC<InputProps> = (props) => {
-  const { id, type = 'text', label, value, error, onChange } = props
+  const {
+    id,
+    type = 'text',
+    size = 'large',
+    label,
+    value,
+    error,
+    placeholder,
+    onChange,
+  } = props
 
   return (
     <>
-      <StyledLabel htmlFor={id}>{label}</StyledLabel>
+      {label && <StyledLabel htmlFor={id}>{label}</StyledLabel>}
       <StyledInput
         type={type}
-        size='large'
+        size={size}
         id={id}
         name={id}
         value={value}
         onChange={onChange}
-        placeholder={label}
+        placeholder={placeholder}
       />
       {error && (
         <Alert

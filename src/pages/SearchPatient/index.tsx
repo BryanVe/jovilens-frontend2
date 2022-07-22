@@ -43,7 +43,7 @@ const columns: ColumnsType<DtoPatient> = [
   },
 ]
 
-const Patients = () => {
+const ListPatients = () => {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState<DtoGetPatientsResponse>()
   const [page, setPage] = useState(1)
@@ -52,8 +52,15 @@ const Patients = () => {
   const handleChangePage = (page: number) => setPage(page)
   const validateFilters = (
     filters?: DtoGetPatientsRequest
-  ): DtoGetPatientsRequest | undefined => {
-    if (!filters) return
+  ): {
+    error?: string
+    filters?: DtoGetPatientsRequest
+  } => {
+    // ! Without filters
+    if (!filters)
+      return {
+        filters,
+      }
 
     const { createdAt, ...rest } = filters
     const response: DtoGetPatientsRequest = {
@@ -68,14 +75,19 @@ const Patients = () => {
     )
       response.createdAt = createdAt
 
-    return response
+    return {
+      filters: response,
+    }
   }
 
   const fetchData = useCallback(
     async (source: CancelTokenSource, _filters?: DtoGetPatientsRequest) => {
       try {
         setLoading(true)
-        const filters = validateFilters(_filters)
+
+        const { error, filters } = validateFilters(_filters)
+
+        if (error) return message.error(error)
 
         const { data } = await axiosInstance.post<
           APIResponse<DtoGetPatientsResponse>
@@ -92,6 +104,10 @@ const Patients = () => {
         )
 
         setData(data.message)
+        let messageText = 'Los pacientes se cargaron correctamente'
+        if (data.message.rows.length === 0)
+          messageText = 'No se encontró pacientes'
+        message.success(messageText)
       } catch (error) {
         console.error(error)
         message.error('No se pudo cargar los pacientes')
@@ -164,4 +180,4 @@ const Patients = () => {
   )
 }
 
-export default Patients
+export default ListPatients

@@ -1,4 +1,5 @@
 interface DtoPatient {
+  id: string
   names: string
   lastNames: string
   phone: string
@@ -7,4 +8,5 @@ interface DtoPatient {
   occupation?: string
   gender?: string
   civilStatus?: string
+  createdAt: string
 }

@@ -1,4 +1,6 @@
-export const genderOptions = [
+export const FETCH_LIMIT = 10
+
+export const GENDER_OPTIONS: SelectorOption[] = [
   {
     label: 'Masculino',
     value: 'M',
@@ -9,7 +11,7 @@ export const genderOptions = [
   },
 ]
 
-export const civilStatusOptions = [
+export const CIVIL_STATUS_OPTIONS: SelectorOption[] = [
   {
     label: 'Soltero',
     value: 'single',

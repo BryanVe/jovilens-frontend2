@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button, Row, Col } from 'antd'
 import { StyledTitle, Input, Selector } from 'components'
-import { civilStatusOptions, genderOptions, patientValidations } from 'utils'
+import { CIVIL_STATUS_OPTIONS, GENDER_OPTIONS, patientValidations } from 'utils'
 
 interface FormData {
   names: string
@@ -87,6 +87,7 @@ const CreatePatient = () => {
             <Input
               id='names'
               label='Nombres'
+              placeholder='Nombres'
               value={formData.names}
               error={errors['names']}
               onChange={handleChangeFormInput}
@@ -96,6 +97,7 @@ const CreatePatient = () => {
             <Input
               id='lastNames'
               label='Apellidos'
+              placeholder='Apellidos'
               value={formData.lastNames}
               error={errors.lastNames}
               onChange={handleChangeFormInput}
@@ -106,6 +108,7 @@ const CreatePatient = () => {
               id='age'
               type='number'
               label='Edad'
+              placeholder='Edad'
               value={formData.age}
               error={errors.age}
               onChange={handleChangeFormInput}
@@ -115,6 +118,7 @@ const CreatePatient = () => {
             <Input
               id='phone'
               label='Teléfono'
+              placeholder='Teléfono'
               value={formData.phone}
               error={errors.phone}
               onChange={handleChangeFormInput}
@@ -124,6 +128,7 @@ const CreatePatient = () => {
             <Input
               id='occupation'
               label='Ocupación'
+              placeholder='Ocupación'
               value={formData.occupation}
               error={errors.occupation}
               onChange={handleChangeFormInput}
@@ -133,28 +138,31 @@ const CreatePatient = () => {
             <Selector
               id='gender'
               label='Género'
+              placeholder='Género'
               value={formData.gender}
               error={errors.gender}
               onChange={(value) => handleChangeFormSelector('gender', value)}
-              options={genderOptions}
+              options={GENDER_OPTIONS}
             />
           </Col>
           <Col xs={24} sm={24} md={8} lg={8} xl={5} xxl={5}>
             <Selector
               id='civilStatus'
               label='Estado civil'
+              placeholder='Estado civil'
               value={formData.civilStatus}
               error={errors.civilStatus}
               onChange={(value) =>
                 handleChangeFormSelector('civilStatus', value)
               }
-              options={civilStatusOptions}
+              options={CIVIL_STATUS_OPTIONS}
             />
           </Col>
           <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={9}>
             <Input
               id='address'
               label='Dirección'
+              placeholder='Dirección'
               value={formData.address}
               error={errors.address}
               onChange={handleChangeFormInput}
